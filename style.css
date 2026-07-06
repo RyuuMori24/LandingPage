@@ -1117,3 +1117,72 @@ section {
         gap: 16px;
     }
 }
+
+/* ==========================================================================
+   PERBAIKAN RESPONSIVE MOBILE (MAKSIMAL LAYAR 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Perbaikan Hero Section agar tidak terpotong di HP */
+    .hero-section {
+        height: auto; /* Ubah dari 100vh agar menyesuaikan tinggi konten asli */
+        padding: 120px 20px 60px 20px; /* Beri jarak aman kanan-kiri 20px */
+        text-align: center; /* Teks berorientasi ke tengah agar lebih estetik di HP */
+    }
+
+    .hero-content h1 {
+        font-size: 32px; /* Perkecil ukuran judul utama agar tidak memakan ruang */
+        line-height: 1.3;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+        margin-bottom: 32px;
+    }
+
+    /* Buat tombol CTA di hero memanjang penuh atau rapi di tengah */
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%; /* Tombol melebar penuh mengikuti layar HP */
+        max-width: 280px;
+        text-align: center;
+    }
+
+    /* 2. Perbaikan Navbar Mobile */
+    .nav-container {
+        padding: 15px 20px; /* Amankan padding navbar di HP */
+    }
+
+    /* 3. Perbaikan Section Cara Kerja (How It Works) */
+    .how-it-works {
+        padding: 60px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 26px; /* Sesuaikan ukuran heading section */
+    }
+
+    /* 4. Perbaikan Section Kontak */
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+    .contact-wrapper {
+        padding: 30px 20px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 24px;
+    }
+
+    /* 5. Mengamankan Marquee agar tidak merusak lebar layar (No Horizontal Scroll) */
+    .client-section {
+        overflow: hidden;
+        width: 100%;
+    }
+}
