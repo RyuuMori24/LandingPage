@@ -1154,9 +1154,38 @@ section {
     }
 
     /* 2. Perbaikan Navbar Mobile */
-    .nav-container {
-        padding: 15px 20px; /* Amankan padding navbar di HP */
+   .nav-container {
+        flex-direction: column;
+        gap: 16px;
+        padding: 15px 20px;
+        text-align: center;
     }
+
+    /* 2. Sesuaikan Posisi Wadah Logo agar Tetap di Tengah */
+    .logo-container {
+        margin: 0 auto;
+    }
+
+    /* 3. Atur Menu Navigasi agar Berjejer Rapi di Layar Sempit */
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap; /* Jika menu terlalu panjang, otomatis turun ke baris baru dengan rapi */
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 14px; /* Sedikit diperkecil agar pas di layar HP */
+        padding: 5px 10px;
+    }
+
+    /* 4. Sembunyikan Tombol Hubungi Kami di Navbar Khusus Mobile */
+    /* Opsional: Karena di section bawah sudah ada tombol CTA yang besar, kita bisa sembunyikan tombol di navbar khusus layar HP agar hemat ruang */
+    .nav-container .btn {
+        display: none; 
+    }
+}
 
     /* 3. Perbaikan Section Cara Kerja (How It Works) */
     .how-it-works {
