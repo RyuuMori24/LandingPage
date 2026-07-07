@@ -1,3 +1,17 @@
+:root {
+    --primary: #0E1B3D;
+    --primary-soft: #18396d;
+    --accent: #0077ff;
+    --accent-soft: #3b9cff;
+    --bg: #f8f9fa;
+    --surface: #ffffff;
+    --surface-alt: #f3f6fb;
+    --text: #0e1b3d;
+    --muted: #55607a;
+    --border: rgba(14, 27, 61, 0.12);
+    --shadow: 0 20px 45px rgba(14, 27, 61, 0.10);
+}
+
 *{
     margin:0;
     padding:0;
@@ -10,12 +24,40 @@ html{
 }
 
 body{
-    background-color: #f8f9fa;
-    color:#0e1b3d;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f4f7fb 100%);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(70px);
+    z-index: -1;
+    opacity: 0.25;
+}
+
+body::before {
+    top: -80px;
+    right: -90px;
+    background: #8ec5ff;
+}
+
+body::after {
+    bottom: -100px;
+    left: -100px;
+    background: #dbeafe;
 }
 
 section {
     padding: 120px 35px;
+    position: relative;
 }
 
 
@@ -23,14 +65,13 @@ section {
 
 .navbar{
     position: fixed;
-    top: 0;
+    top: 14px;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 100%;
-    max-width: 1300px;
+    width: min(1320px, calc(100% - 24px));
 
-    padding: 20px 35px;
+    padding: 16px 24px;
 
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -38,11 +79,13 @@ section {
 
     z-index: 1000;
 
-    background: rgba(248, 249, 250, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(248, 249, 250, 0.84);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
-    border-bottom: 1px solid rgba(14, 27, 61, 0.08);
+    border: 1px solid rgba(14, 27, 61, 0.08);
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(14, 27, 61, 0.08);
 
     transition: all 0.3s ease;
 }
@@ -58,9 +101,15 @@ section {
   filter: drop-shadow(200px 0 0 #0E1B3D);
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+}
+
 .navbar.scrolled{
-    background: rgba(248, 249, 250, 0.95);
-    box-shadow: 0 10px 30px rgba(14, 27, 61, 0.08);
+    background: rgba(248, 249, 250, 0.96);
+    box-shadow: 0 18px 40px rgba(14, 27, 61, 0.12);
 }
 
 
@@ -162,74 +211,153 @@ section {
 
 .hero{
     min-height:100vh;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
-    padding:120px 20px;
-
-    background:#f8f9fa;
+    padding:140px 20px 90px;
+    background: linear-gradient(135deg, rgba(14, 27, 61, 0.03) 0%, rgba(0, 119, 255, 0.05) 100%);
     text-align:center;
+    position: relative;
+}
+
+.hero::before,
+.hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.35;
+}
+
+.hero::before {
+    width: 260px;
+    height: 260px;
+    background: #8ec5ff;
+    top: 80px;
+    right: 5%;
+}
+
+.hero::after {
+    width: 220px;
+    height: 220px;
+    background: #dbeafe;
+    bottom: 40px;
+    left: 6%;
 }
 
 .hero-content{
-    max-width:800px;
+    max-width: 860px;
+    position: relative;
+    z-index: 2;
 }
 
 .trust-badge{
     display:inline-flex;
     align-items:center;
-
     padding:10px 18px;
-
-    background:#eef6ff;
-    color:#0077ff;
-
+    background: rgba(0, 119, 255, 0.12);
+    color: var(--accent);
     border-radius:999px;
-
     font-size:14px;
-    font-weight:600;
-
+    font-weight:700;
     margin-bottom:25px;
+    border: 1px solid rgba(0, 119, 255, 0.15);
 }
 
 .hero h1{
-    font-size:clamp(3rem, 6vw, 4rem);
-    line-height:1.15;
-    color:#0e1b3d;
+    font-size:clamp(2.6rem, 6vw, 4.3rem);
+    line-height:1.1;
+    color:var(--text);
+    letter-spacing: -0.02em;
 }
 
 .hero h1 span{
-    color:#0077ff;
+    color:var(--accent);
 }
 
 .hero-description{
-    margin-top:30px;
-
+    margin-top:24px;
     font-size:20px;
     line-height:1.8;
-
-    color:#55607a;
+    color:var(--muted);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-stats{
-    margin-top:50px;
-
+    margin-top:44px;
     display:flex;
     justify-content:center;
-    gap:60px;
+    gap:30px;
+    flex-wrap: wrap;
+}
+
+.hero-stat{
+    padding: 18px 22px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(14,27,61,0.06);
+    box-shadow: 0 10px 30px rgba(14,27,61,0.06);
+    min-width: 140px;
 }
 
 .hero-stat h3{
-    font-size:32px;
-    color:#0077ff;
+    font-size:28px;
+    color:var(--accent);
     margin-bottom:6px;
 }
 
-.hero-stat span{
+.hero-stat p{
     font-size:14px;
-    color:#64748b;
+    color:var(--muted);
+}
+
+.hero-panel {
+    margin-top: 34px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-panel-card {
+    width: min(720px, 100%);
+    padding: 24px 28px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(14,27,61,0.95) 0%, rgba(24,57,109,0.95) 100%);
+    color: white;
+    text-align: left;
+    box-shadow: 0 25px 60px rgba(14,27,61,0.18);
+}
+
+.hero-panel-card h3 {
+    font-size: 18px;
+    margin-bottom: 14px;
+}
+
+.hero-panel-card p {
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.hero-panel-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+.hero-panel-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.92);
+    font-size: 14px;
+}
+
+.hero-panel-list i {
+    color: #8ec5ff;
+    font-size: 18px;
 }
 
 /* =========================
@@ -333,7 +461,7 @@ section {
     padding: 100px 35px;
     max-width: 1300px;
     margin: 0 auto;
-    background: #f8f9fa;
+    background: transparent;
 }
 
 .features-header{
@@ -343,117 +471,113 @@ section {
 
 .features-header h2 {
     font-size: 42px;
-    color: #0e1b3d;
+    color: var(--text);
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .features p{
     font-size: 18px;
-    color: #55607a;
+    color: var(--muted);
     max-width: 800px;
     margin: 0 auto;
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
 }
 
-/* Desain Kartu Utama */
 .feature-card {
-    background: white;
-    border: 2px solid #eef1f6;
-    border-radius: 16px;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+    border: 1px solid rgba(14, 27, 61, 0.08);
+    border-radius: 22px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 200px;
+    min-height: 210px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
+    box-shadow: 0 12px 30px rgba(14, 27, 61, 0.06);
 }
 
-/* Efek Interaktif Tambahan (Hover) */
 .feature-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(14, 27, 61, 0.1);
-    box-shadow: 0 15px 35px rgba(14, 27, 61, 0.08);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(14, 27, 61, 0.12);
+    border-color: rgba(0, 119, 255, 0.2);
 }
 
-/* Bagian Atas Kartu (Tempat Ikon & Judul Berdampingan) */
 .card-top {
     display: flex;
     align-items: center;
     position: relative;
-    padding-right: 20px;
+    padding: 24px 24px 12px;
 }
 
-/* Kotak Ikon di Pojok Kiri Atas */
 .icon-box {
-    width: 85px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom-right-radius: 32px; /* Membuat lekukan khas seperti di Fitur.png */
-    margin-right: 20px;
+    border-radius: 18px;
+    margin-right: 16px;
     flex-shrink: 0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 .icon-box i{
-    font-size: 32px; /* Mengatur ukuran besar ikon */
+    font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Judul Fitur */
 .card-top h3 {
     font-size: 20px;
-    color: #0E1B3D;
-    font-weight: 600;
+    color: var(--text);
+    font-weight: 700;
 }
 
-/* Konten Deskripsi */
 .card-body {
-    padding: 15px 25px 25px 25px;
+    padding: 0 24px 24px;
     flex-grow: 1;
 }
 
 .card-body p {
     font-size: 14px;
-    color: #6c7a9c;
-    line-height: 1.6;
+    color: #68758f;
+    line-height: 1.7;
 }
 
 .bg-blue {
-    background-color: #e2eeff;
+    background: linear-gradient(135deg, #e2eeff 0%, #dceeff 100%);
     color: #0066ff;
 }
 
 .bg-cyan {
-    background-color: #d7f9ff;
+    background: linear-gradient(135deg, #d7f9ff 0%, #e6fbff 100%);
     color: #00b4d8;
 }
 
 .bg-purple {
-    background-color: #eee7ff;
+    background: linear-gradient(135deg, #eee7ff 0%, #f3ebff 100%);
     color: #6f42c1;
 }
 
 .bg-green {
-    background-color: #d8fbe4;
+    background: linear-gradient(135deg, #d8fbe4 0%, #e9fef0 100%);
     color: #198754;
 }
 
 .bg-orange {
-    background-color: #ffeeda;
+    background: linear-gradient(135deg, #ffeeda 0%, #fff4e7 100%);
     color: #fd7e14;
 }
 
 .bg-pink {
-    background-color: #ffe6f2;
+    background: linear-gradient(135deg, #ffe6f2 0%, #fff0f6 100%);
     color: #e83e8c;
 }
 
@@ -468,9 +592,9 @@ section {
 }
 
 .how-it-works {
-  background-color: #f8f9fa; /* Latar off-white */
+  background: linear-gradient(180deg, rgba(248,249,250,0.95) 0%, rgba(243,246,251,1) 100%);
   padding: 80px 24px;
-  color: #0E1B3D;
+  color: var(--text);
   font-family: sans-serif;
   text-align: center;
 }
@@ -506,16 +630,17 @@ section {
 }
 
 .step-card {
-  background: #ffffff;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
   padding: 32px;
-  border-radius: 16px;
-  border: 1px solid #f0f0f0;
+  border-radius: 22px;
+  border: 1px solid rgba(14, 27, 61, 0.08);
   transition: all 0.3s ease;
+  box-shadow: 0 12px 30px rgba(14, 27, 61, 0.05);
 }
 
 .step-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(14, 27, 61, 0.05);
+  box-shadow: 0 18px 40px rgba(14, 27, 61, 0.10);
 }
 
 .step-number {
@@ -549,7 +674,7 @@ section {
 
 .clients {
     padding: 100px 0; 
-    background-color: #f0f4fa; 
+    background: linear-gradient(180deg, #f5f8fd 0%, #eef4fb 100%);
     text-align: center;
     overflow: hidden;
     position: relative;
@@ -597,8 +722,8 @@ section {
 
 /* Desain Kotak Logo Baru (Lebih Fleksibel) */
 .client-logo {
-    background: #f0f4f8;
-    border: 1px solid rgba(14, 27, 61, 0.05); 
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(14, 27, 61, 0.08); 
 
     /* Trik Besar-Kecil Sama: Kunci di TINGGI yang sama, lebar biarkan fleksibel */
     height: 85px;
@@ -669,8 +794,29 @@ section {
     animation: scrollRightNew 40s linear infinite;
 }
 
-.marquee-row:hover .marquee-track {
-    animation-play-state: paused; /* Hover untuk stop sejenak */
+@media (hover: hover) and (pointer: fine) {
+    .marquee-row:hover .marquee-track {
+        animation-play-state: paused; /* Hover untuk stop sejenak */
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .marquee-row:hover .marquee-track {
+        animation-play-state: running;
+    }
+}
+
+.marquee-row.touch-pause .marquee-track {
+    animation-play-state: paused !important;
+}
+
+.client-logo.active {
+    background: rgba(14, 27, 61, 0.08);
+    border-color: rgba(14, 27, 61, 0.2);
+    filter: grayscale(0%);
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(14, 27, 61, 0.06);
+    transform: translateY(-3px);
 }
 
 /* Rumus jitu anti-patah: Translate tepat setengah dari total track (50%) */
@@ -772,12 +918,13 @@ section {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background:white;
-    border:1px solid #eef2f7;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+    border:1px solid rgba(14, 27, 61, 0.08);
     border-radius:24px;
     padding:32px;
     position:relative;
     transition:.3s ease;
+    box-shadow: 0 12px 30px rgba(14, 27, 61, 0.05);
 }
 
 .testimonial-card:hover{
@@ -900,11 +1047,12 @@ section {
 
     border-radius:32px;
 
-    background:#0E1B3D;
+    background: linear-gradient(135deg, #0E1B3D 0%, #18396d 100%);
 
     color:white;
 
     text-align:center;
+    box-shadow: 0 25px 60px rgba(14, 27, 61, 0.18);
 }
 
 .contact-wrapper h2{
@@ -1122,15 +1270,83 @@ section {
    PERBAIKAN RESPONSIVE MOBILE (MAKSIMAL LAYAR 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. Perbaikan Hero Section agar tidak terpotong di HP */
+    /* --- 1. NAVBAR & HAMBURGER MENU MECHANISM --- */
+    .nav-container {
+        padding: 15px 20px;
+        position: relative; /* Menjadi acuan posisi menu dropdown */
+    }
+
+    /* Aktifkan bentuk tombol garis tiga (Hamburger) */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 999;
+    }
+
+    .menu-toggle span {
+        width: 100%;
+        height: 2px;
+        background-color: #0E1B3D; /* Warna garis mengikuti warna utama FivTo */
+        transition: all 0.3s ease;
+    }
+
+    /* Ubah daftar menu menjadi tirai dropdown yang tersembunyi */
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Pas di bawah batas navbar */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        
+        /* Efek menyembunyikan elemen */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px 0;
+        border-bottom: 1px solid #f1f5f9;
+        width: 100%;
+    }
+
+    /* Class yang dipicu JavaScript saat hamburger di-klik */
+    .nav-links.active {
+        max-height: 300px; /* Batas tinggi maksimal menu saat terbuka */
+    }
+
+    /* Sembunyikan tombol CTA kecil di navbar khusus layar HP */
+    .nav-container .btn {
+        display: none;
+    }
+
+
+    /* --- 2. HERO SECTION --- */
     .hero-section {
-        height: auto; /* Ubah dari 100vh agar menyesuaikan tinggi konten asli */
-        padding: 120px 20px 60px 20px; /* Beri jarak aman kanan-kiri 20px */
-        text-align: center; /* Teks berorientasi ke tengah agar lebih estetik di HP */
+        height: auto; /* Lepas 100vh agar konten tidak tabrakan di layar pendek */
+        padding: 120px 20px 60px 20px; /* Jarak aman dari atas navbar dan sisi kanan-kiri */
+        text-align: center; /* Rata tengah agar lebih seimbang di perangkat mobile */
     }
 
     .hero-content h1 {
-        font-size: 32px; /* Perkecil ukuran judul utama agar tidak memakan ruang */
+        font-size: 32px; /* Perkecil judul utama agar pas di layar kecil */
         line-height: 1.3;
     }
 
@@ -1139,7 +1355,7 @@ section {
         margin-bottom: 32px;
     }
 
-    /* Buat tombol CTA di hero memanjang penuh atau rapi di tengah */
+    /* Susun tombol hero berurutan ke bawah secara vertikal */
     .hero-buttons {
         display: flex;
         flex-direction: column;
@@ -1148,55 +1364,30 @@ section {
     }
 
     .hero-buttons .btn {
-        width: 100%; /* Tombol melebar penuh mengikuti layar HP */
+        width: 100%;
         max-width: 280px;
         text-align: center;
     }
 
-    /* 2. Perbaikan Navbar Mobile */
-   .nav-container {
-        flex-direction: column;
-        gap: 16px;
-        padding: 15px 20px;
-        text-align: center;
+
+    /* --- 3. SECTION KLIEN / PARTNER MARQUEE --- */
+    .client-section {
+        overflow: hidden; /* Mengunci total agar tidak merusak lebar layar (no horizontal scroll) */
+        width: 100%;
     }
 
-    /* 2. Sesuaikan Posisi Wadah Logo agar Tetap di Tengah */
-    .logo-container {
-        margin: 0 auto;
-    }
 
-    /* 3. Atur Menu Navigasi agar Berjejer Rapi di Layar Sempit */
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap; /* Jika menu terlalu panjang, otomatis turun ke baris baru dengan rapi */
-        justify-content: center;
-        gap: 15px;
-        padding: 0;
-    }
-
-    .nav-links a {
-        font-size: 14px; /* Sedikit diperkecil agar pas di layar HP */
-        padding: 5px 10px;
-    }
-
-    /* 4. Sembunyikan Tombol Hubungi Kami di Navbar Khusus Mobile */
-    /* Opsional: Karena di section bawah sudah ada tombol CTA yang besar, kita bisa sembunyikan tombol di navbar khusus layar HP agar hemat ruang */
-    .nav-container .btn {
-        display: none; 
-    }
-}
-
-    /* 3. Perbaikan Section Cara Kerja (How It Works) */
+    /* --- 4. SECTION CARA KERJA (HOW IT WORKS) --- */
     .how-it-works {
         padding: 60px 20px;
     }
 
     .section-header h2 {
-        font-size: 26px; /* Sesuaikan ukuran heading section */
+        font-size: 26px;
     }
 
-    /* 4. Perbaikan Section Kontak */
+
+    /* --- 5. SECTION KONTAK --- */
     .contact-section {
         padding: 60px 20px;
     }
@@ -1209,9 +1400,506 @@ section {
         font-size: 24px;
     }
 
-    /* 5. Mengamankan Marquee agar tidak merusak lebar layar (No Horizontal Scroll) */
-    .client-section {
-        overflow: hidden;
+
+    /* --- 6. FOOTER --- */
+    .footer-top {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-links, 
+    .footer-contact {
+        gap: 16px;
+    }
+}
+
+/* ==========================================================================
+   PENGAMAN DESKTOP (Sembunyikan tombol hamburger di layar lebar)
+   ========================================================================== */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE MOBILE OPTIMIZATION (320px - 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    /* NAVBAR */
+    .navbar {
+        padding: 15px 20px;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+    }
+
+    .navbar-logo {
+        height: 24px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
         width: 100%;
+        background: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        max-height: 400px;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 16px 20px;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: center;
+        color: #0e1b3d;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    /* MENU TOGGLE ANIMATION */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        gap: 4px;
+    }
+
+    .menu-toggle span {
+        width: 100%;
+        height: 2.5px;
+        background: #0e1b3d;
+        transition: all 0.3s ease;
+        display: block;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* HERO SECTION */
+    .hero {
+        min-height: auto;
+        padding: 100px 20px 60px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .trust-badge {
+        font-size: 12px;
+        padding: 8px 14px;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .hero-description {
+        font-size: 14px;
+        margin-top: 20px;
+        line-height: 1.6;
+    }
+
+    .hero-stats {
+        margin-top: 40px;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .hero-stat h3 {
+        font-size: 24px;
+    }
+
+    .hero-stat p {
+        font-size: 12px;
+    }
+
+    /* SECTIONS */
+    section {
+        padding: 60px 20px;
+    }
+
+    /* FEATURES */
+    .features {
+        padding: 60px 20px;
+    }
+
+    .features-header h2 {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    .features-header p {
+        font-size: 14px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-card {
+        min-height: 180px;
+        padding: 0;
+        border: none;
+        background: white;
+        border: 1px solid #eef1f6;
+        border-radius: 12px;
+    }
+
+    .card-top {
+        padding: 20px 15px 0 15px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 12px;
+        margin-right: 0;
+    }
+
+    .card-top h3 {
+        font-size: 16px;
+    }
+
+    .card-body {
+        padding: 10px 15px 15px 15px;
+    }
+
+    .card-body p {
+        font-size: 13px;
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+        padding: 60px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 24px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .step-card {
+        padding: 24px 20px;
+    }
+
+    .step-number {
+        font-size: 28px;
+    }
+
+    .step-card h3 {
+        font-size: 18px;
+    }
+
+    /* CLIENTS */
+    .clients {
+        padding: 60px 20px;
+    }
+
+    .clients-header h2 {
+        font-size: 24px;
+        padding: 0;
+    }
+
+    .clients-header p {
+        font-size: 14px;
+        padding: 0;
+    }
+
+    .marquee-container::before,
+    .marquee-container::after {
+        width: 100px;
+    }
+
+    .marquee-track {
+        gap: 15px;
+    }
+
+    .client-logo {
+        width: 140px;
+        height: 70px;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+        padding: 60px 20px;
+    }
+
+    .testimonials-header h2 {
+        font-size: 24px;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .featured {
+        grid-row: unset;
+        margin-bottom: 0;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .quote {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .author {
+        gap: 10px;
+    }
+
+    .author img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+        padding: 60px 20px;
+    }
+
+    .contact-wrapper {
+        padding: 40px 20px;
+        border-radius: 20px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    .contact-wrapper p {
+        font-size: 14px;
+    }
+
+    .contact-btn {
+        margin-top: 30px;
+        padding: 14px 28px;
+        font-size: 14px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact-info span {
+        font-size: 12px;
+    }
+
+    .contact-info h4 {
+        font-size: 14px;
+    }
+
+    /* FOOTER */
+    .footer {
+        padding: 60px 20px 20px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 40px;
+        padding-bottom: 30px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE TABLET (481px - 768px)
+   ========================================================================== */
+@media (max-width: 768px) and (min-width: 481px) {
+    .navbar {
+        padding: 18px 25px;
+        grid-template-columns: 1fr auto;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-links.active {
+        max-height: 350px;
+    }
+
+    .nav-links a {
+        padding: 14px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        height: 2px;
+        background: #0e1b3d;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(9px, 9px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    section {
+        padding: 80px 25px;
+    }
+
+    .hero {
+        padding: 100px 25px 60px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .features-header h2 {
+        font-size: 32px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-wrapper {
+        padding: 50px 30px;
+    }
+
+    .contact-wrapper h2 {
+        font-size: 32px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVE SMALL DESKTOP (769px - 992px)
+   ========================================================================== */
+@media (max-width: 992px) and (min-width: 769px) {
+    .navbar {
+        grid-template-columns: 0.8fr 1fr 0.8fr;
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .featured {
+        grid-row: 1 / 3;
+    }
+
+    .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
